@@ -1,6 +1,7 @@
 // File: DetailActivity.java
 package com.example.ditichhanoi; // Thay bằng package của bạn
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,11 @@ public class DetailActivity extends AppCompatActivity {
     private Button directionsButton, youtubeButton, backButton;
     private HistoricalSite currentSite;
     private Toolbar toolbar;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,10 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setupButtonListeners() {
         // Nút chỉ đường
+        directionsButton.setText(getString(R.string.button_directions));
+        youtubeButton.setText(getString(R.string.button_youtube));
+        backButton.setText(getString(R.string.button_back));
+
         directionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
